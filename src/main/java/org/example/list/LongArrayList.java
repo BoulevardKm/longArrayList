@@ -7,7 +7,7 @@ public class LongArrayList implements LongList {
     private int capacity;
     private int size;
 
-    LongArrayList() {
+    public LongArrayList() {
         capacity = 1;
         values = new long[capacity];
         size = 0;
@@ -44,13 +44,26 @@ public class LongArrayList implements LongList {
         if (size + 1 > capacity) {
             updateCapacity(capacity * 2);
         }
+        values[size] = element;
+        size++;
     }
 
     @Override
     public void add(int index, long element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+
         if (size + 1 > capacity) {
             updateCapacity(capacity * 2);
         }
+
+        for (int i = size; i > index; i--) {
+            values[i] = values[i - 1];
+        }
+
+        values[index] = element;
+        size++;
     }
 
     @Override
@@ -92,49 +105,5 @@ public class LongArrayList implements LongList {
         }
         values = valuesArray;
         capacity = newCapacity;
-    }
-
-    public static class ArrayRealization {
-        LongArrayList longList = new LongArrayList();
-        public void arrayAddElements() {
-
-            longList.add(0, 10);
-            longList.add(1, 20);
-            longList.add(2, 30);
-            longList.add(3, 40);
-            longList.add(4, 50);
-            longList.add(60);
-        }
-
-        public void arrayGetElement() {
-
-            longList.get(2);
-        }
-
-        public void arraySetElement() {
-
-            longList.set(2, 31);
-        }
-
-        public void arrayGetSize() {
-
-            longList.size();
-        }
-
-        public void arrayIsEmpty() {
-
-            longList.isEmpty();
-        }
-
-        public void arrayRemove() {
-
-            longList.remove(3);
-        }
-
-        public void arrayContains() {
-
-            longList.contains(60);
-        }
-
     }
 }
