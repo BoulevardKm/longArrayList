@@ -43,24 +43,20 @@ public class LongArrayListTest {
         assertFalse(longArrayList.contains(100));
 
         //проверка негативных кейсов
-        try {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             longArrayList.get(-1);
-        } catch (IndexOutOfBoundsException e) {
-        }
+        });
 
-        try {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             longArrayList.set(-1, 100);
-        } catch (IndexOutOfBoundsException e) {
-        }
+        });
 
-        try {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             longArrayList.remove(-1);
-        } catch (IndexOutOfBoundsException e) {
-        }
+        });
 
-        try {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             longArrayList.add(7, 100);
-        } catch (IndexOutOfBoundsException e) {
-        }
+        });
     }
 }

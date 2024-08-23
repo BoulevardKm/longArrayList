@@ -76,7 +76,7 @@ public class LongArrayList implements LongList {
         for (int i = index; i < size - 1; i++) {
             values[i] = values[i + 1];
         }
-        values[size - 1] = Long.parseLong(null);
+        values[size - 1] = 0;
         size--;
 
         return removedValue;
