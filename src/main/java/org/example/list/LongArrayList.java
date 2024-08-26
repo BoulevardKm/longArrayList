@@ -16,7 +16,7 @@ public class LongArrayList implements LongList {
     @Override
     public long get(int index) {
         if (index < 0 || index >= size) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Индекс " + index + " вне допустимого диапазона: 0 до " + (size - 1));
         }
         return values[index];
     }
@@ -24,7 +24,7 @@ public class LongArrayList implements LongList {
     @Override
     public void set(int index, long element) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Индекс " + index + " вне допустимого диапазона: 0 до " + (size - 1));
         }
         values[index] = element;
     }
@@ -51,7 +51,7 @@ public class LongArrayList implements LongList {
     @Override
     public void add(int index, long element) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Индекс " + index + " вне допустимого диапазона: 0 до " + (size - 1));
         }
 
         if (size + 1 > capacity) {
@@ -69,13 +69,14 @@ public class LongArrayList implements LongList {
     @Override
     public long remove(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Индекс " + index + " вне допустимого диапазона: 0 до " + (size - 1));
         }
         long removedValue = values[index];
 
         for (int i = index; i < size - 1; i++) {
             values[i] = values[i + 1];
         }
+        values[size - 1] = 0;
         size--;
 
         return removedValue;
