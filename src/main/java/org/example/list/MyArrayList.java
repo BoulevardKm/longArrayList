@@ -8,7 +8,7 @@ public class MyArrayList<T> implements Iterable<T> {
     private int capacity;
     private int size;
 
-    public void LongArrayList() {
+    public MyArrayList() {
         capacity = 1;
         values = new Object[capacity];
         size = 0;
@@ -77,7 +77,7 @@ public class MyArrayList<T> implements Iterable<T> {
         for (int i = index; i < size - 1; i++) {
             values[i] = values[i + 1];
         }
-        values[size - 1] = 0;
+        values[size - 1] = null;
         size--;
 
         return removedValue;
@@ -85,10 +85,19 @@ public class MyArrayList<T> implements Iterable<T> {
 
 
 
+
     public boolean contains(T element) {
-        for (int i = 0; i < size; i++) {
-            if (values[i] == element) {
-                return true;
+        if (element == null) {
+            for (int i = 0; i < size; i++) {
+                if (values[i] == null) {
+                    return true;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (element.equals(values[i])) {
+                    return true;
+                }
             }
         }
         return false;
