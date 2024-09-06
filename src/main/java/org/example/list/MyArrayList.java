@@ -2,6 +2,7 @@ package org.example.list;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class MyArrayList<T> implements Iterable<T> {
     private Object[] values;
@@ -87,17 +88,9 @@ public class MyArrayList<T> implements Iterable<T> {
 
 
     public boolean contains(T element) {
-        if (element == null) {
-            for (int i = 0; i < size; i++) {
-                if (values[i] == null) {
-                    return true;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (element.equals(values[i])) {
-                    return true;
-                }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(element, values[i])) {
+                return true;
             }
         }
         return false;
