@@ -2,13 +2,14 @@ package org.example.list;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class MyArrayList<T> implements Iterable<T> {
     private Object[] values;
     private int capacity;
     private int size;
 
-    public void LongArrayList() {
+    public MyArrayList() {
         capacity = 1;
         values = new Object[capacity];
         size = 0;
@@ -77,7 +78,7 @@ public class MyArrayList<T> implements Iterable<T> {
         for (int i = index; i < size - 1; i++) {
             values[i] = values[i + 1];
         }
-        values[size - 1] = 0;
+        values[size - 1] = null;
         size--;
 
         return removedValue;
@@ -85,9 +86,10 @@ public class MyArrayList<T> implements Iterable<T> {
 
 
 
+
     public boolean contains(T element) {
         for (int i = 0; i < size; i++) {
-            if (values[i] == element) {
+            if (Objects.equals(element, values[i])) {
                 return true;
             }
         }
